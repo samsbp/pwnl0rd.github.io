@@ -14,9 +14,9 @@ enableRobotsTXT = true
 #googleAnalytics = "UA-123-45"
 
 [params]
-title = "I'm PwnL0rd"
+title = "Pwnl0rd's Blog"
 author = "PwnL0rd"
-description = "Call me PwnL0rd"
+description = "Explorer of cyber-security stuffs - Interested in web, pwn and re   - Plays CTF's"
 profilePicture = "img/main/sam.jpg"
 keywords = ""
 favicon = "favicons/"
