@@ -66,8 +66,3 @@ url = "mailto:mail@samsbp18@gmail.com"
   identifier = "posts"
   url = "/post/"
 
-  [[menu.main]]
-  name = "About"
-  weight = 300
-  identifier = "about"
-  url = "/about/"
