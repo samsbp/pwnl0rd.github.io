@@ -3,7 +3,7 @@ title: "Solving IOLI Crackmes Using Radare2 [Part-I]"
 date: 2020-07-13T00:08:32+05:30
 ---
 
-As I was learning reverse engineering using r2, i tried the [IOLI crackmes]("https://github.com/Maijin/radare2-workshop-2015/tree/master/IOLI-crackme/bin-linux"). This post covers the solutions of two crackmes(0x00,0x01) using r2.
+As I was learning reverse engineering using r2, i tried the [IOLI crackmes](https://github.com/Maijin/radare2-workshop-2015/tree/master/IOLI-crackme/bin-linux). This post covers the solutions of two crackmes(0x00,0x01) using r2.
 
 ## crackme0x00
 
@@ -42,7 +42,7 @@ nth paddr      vaddr      len size section type  string
 
 [0x08048360]> 
 ```
-You may wonder how the password is stored in data section, the point here is the global variables. In c, gloable variable's values are stored in data sections . So, what we can understand from this binary is that the password has been initialzed in a global variable and that's why we see the value of the global variable in our data section. Pls check out [this blog]("https://www.geeksforgeeks.org/memory-layout-of-c-program/")
+You may wonder how the password is stored in data section, the point here is the global variables. In c, gloable variable's values are stored in data sections . So, what we can understand from this binary is that the password has been initialzed in a global variable and that's why we see the value of the global variable in our data section. Pls check out [this blog](https://www.geeksforgeeks.org/memory-layout-of-c-program/)
 
 ## crackme0x01
 
@@ -120,7 +120,7 @@ where pdf is for print disassemble function. You can get more help on the comman
 
 ```
 
-Before going straight to understand the assembly code , read the [intel blog]("https://software.intel.com/content/www/us/en/develop/articles/introduction-to-x64-assembly.html") and also [this helper for the intel blog]("https://github.com/samsbp/learnReverse/blob/master/week1/IntelRead.md")
+Before going straight to understand the assembly code , read the [intel blog](https://software.intel.com/content/www/us/en/develop/articles/introduction-to-x64-assembly.html) and also [this helper for the intel blog](https://github.com/samsbp/learnReverse/blob/master/week1/IntelRead.md)
 
 As you have guessed , the binary is a 32 bit binary . There are two ways to find it, one is to use file command other we can guess by looking at the assembly itself since eax,edx and all e's in the registers denotes 32 bit registers if the eax was rax and edx as rdx then it is a 64 bit registers which in-turn denotes 64 bit binary.
 
@@ -147,7 +147,7 @@ The mov command will move the IOLI_Crackme_Level_0x01 string to esp's location s
 │           0x0804842b      817dfc9a1400.  cmp dword [var_4h], 0x149a
 ```
 
-The next command is lea which will load the address of var_4h , so var_4h is the location where our input is stored. How do we know that it is in var_4h the input will be stored , it is because the scanf contains two arguments , one is the format string and the other is the variable to store the input. In assembly the argument will be loaded from right to left( it depends on [calling conventions]("https://en.wikipedia.org/wiki/X86_calling_conventions") ) and since the var_4h is loaded first, the input will be in var_4h. As you can see the format string is the next one to be loaded which is available in 0x804854c. We can extract the string from 0x804854c to see the stored format string by using pfz
+The next command is lea which will load the address of var_4h , so var_4h is the location where our input is stored. How do we know that it is in var_4h the input will be stored , it is because the scanf contains two arguments , one is the format string and the other is the variable to store the input. In assembly the argument will be loaded from right to left( it depends on [calling conventions](https://en.wikipedia.org/wiki/X86_calling_conventions) ) and since the var_4h is loaded first, the input will be in var_4h. As you can see the format string is the next one to be loaded which is available in 0x804854c. We can extract the string from 0x804854c to see the stored format string by using pfz
 
 `pfz @ 0x804854c` 
 
@@ -163,7 +163,7 @@ The input will be stored in var_4h so lets rename the var_4h as input for better
 
 use afv? for understanding what the command does 
 
-But before issuing the afvn command we should [seek]("https://radare.gitbooks.io/radare2book/basic_commands/seeking.html") the address to main function so that r2 can find tha var_4h which is only available in main function only ,so it will look like this 
+But before issuing the afvn command we should [seek](https://radare.gitbooks.io/radare2book/basic_commands/seeking.html) the address to main function so that r2 can find tha var_4h which is only available in main function only ,so it will look like this 
 
 ```
 [0x08048330]> s main
@@ -238,7 +238,7 @@ trits   0t21020100
 [0x080483e4]> 
 ```
 
-As you can see, the int format for our 0x149a is 5274. And if we continue the assembly code, after cmp it jumps if equal (je) to 0x8048442 which is nothing  but printing password ok which means we found the password ;). 
+As you can see, the int format for our hex value 0x149a is 5274. And if we continue the assembly code, after cmp it jumps if equal (je) to 0x8048442 which is nothing  but printing password ok which means we found the password ;). 
 
 I know it is not good to continue after this as you may feel brainfucked, it's okay . Start solving the crackme's and if you can't solve it, you can refer this blog.
 
