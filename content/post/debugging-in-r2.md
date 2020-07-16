@@ -179,3 +179,104 @@ D - open disassembler
 <spacebar> -  open graph view
 ```
 
+## solving crackme0x02
+
+Open binary using `r2 -Ad crackme0x02`
+
+`dcu main` - set breakpoint at main and continue
+Change to panel mode by using `v`
+
+```
+root@n00b:~/Desktop/RE/radare2-workshop-2015/IOLI-crackme/bin-linux# r2 -Ad crackme0x02
+Process with PID 15189 started...
+= attach 15189 15189
+bin.baddr 0x08048000
+Using 0x8048000
+asm.bits 32
+glibc.fc_offset = 0x00148
+[Invalid address from 0x080483cfith sym. and entry0 (aa)
+[x] Analyze all flags starting with sym. and entry0 (aa)
+[x] Analyze function calls (aac)
+[x] Analyze len bytes of instructions for references (aar)
+[x] Check for objc references
+Warning: aao experimental on 32bit binaries
+[x] Check for vtables
+[TOFIX: aaft can't run in debugger mode.ions (aaft)
+[x] Type matching analysis for all functions (aaft)
+[x] Propagate noreturn information
+[x] Use -AA or aaaa to perform additional experimental analysis.
+ -- Use radare2! Lemons included!
+[0xf7ef80b0]> dcu main
+Continue until 0x080483e4 using 1 bpsize
+hit breakpoint at: 80483e4
+[0x080483e4]> 
+
+```
+
+Switch to panel mode by using `v`.
+```
+[0x08048498]>v
+```
+
+```
+  File  Settings  Edit  View  Tools  Search  Emulate  Debug  Analyze  Help                                                                                                               Tab [1] [0x080483e4]
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐──────────────────────────────────────────────────────────────────────────────┐
+│[X] Disassembly (pd)                                                                                            [Cache] Off │[X]   Stack (pxw 256@r:SP)                                        [Cache] Off │
+│             ; DATA XREF from entry0 @ 0x8048347                                                                            │ 0xffab282c  0xf7d097e1 0x00000001 0xffab28c4 0xffab28cc  .........(...(..    │
+│             ;-- eip:                                                                                                       │ 0xffab283c  0xffab2854 0x00000001 0x00000000 0xf7ec2000  T(........... ..    │
+│ ┌ 144: int main (int argc, char **argv, char **envp);                                                                      │ 0xffab284c  0x00000000 0xf7f12000 0x00000000 0xf7ec2000  ..... ....... ..    │
+│ │           ; var int32_t var_ch @ ebp-0xc                                                                                 │ 0xffab285c  0xf7ec2000 0x00000000 0xd678a6e9 0x210780f9  . ........x....!    │
+│ │           ; var int32_t var_8h @ ebp-0x8                                                                                 │ 0xffab286c  0x00000000 0x00000000 0x00000000 0x00000001  ................    │
+│ │           ; var int32_t var_4h @ ebp-0x4                                                                                 │ 0xffab287c  0x08048330 0x00000000 0xf7efe450 0xf7ef92d0  0.......P.......    │
+│ │           ; var int32_t var_sp_4h @ esp+0x4                                                                              │ 0xffab288c  0xf7f12000 0x00000001 0x08048330 0x00000000  . ......0.......    │
+│ │           0x080483e4  *   55             push ebp                                                                        │ 0xffab289c  0x08048351 0x080483e4 0x00000001 0xffab28c4  Q............(..    │
+│ │           0x080483e5      89e5           mov ebp, esp                                                                    │ 0xffab28ac  0x08048480 0x080484f0 0xf7ef92d0 0xffab28bc  .............(..    │
+│ │           0x080483e7      83ec18         sub esp, 0x18                                                                   │ 0xffab28bc  0x0000001c 0x00000001 0xffab3f48 0x00000000  ........H?......    │
+│ │           0x080483ea      83e4f0         and esp, 0xfffffff0                                                             │ 0xffab28cc  0xffab3f56 0xffab3f66 0xffab3fb2 0xffab3fbd  V?..f?...?...?..    │
+│ │           0x080483ed      b800000000     mov eax, 0                                                                      │ 0xffab28dc  0xffab3fd0 0xffab4006 0xffab401f 0xffab4053  .?...@...@..S@..    │
+│ │           0x080483f2      83c00f         add eax, 0xf                ; 15                                                │ 0xffab28ec  0xffab408d 0xffab40c7 0xffab40dd 0xffab40f0  .@...@...@...@..    │
+│ │           0x080483f5      83c00f         add eax, 0xf                ; 15                                                │ 0xffab28fc  0xffab40fa 0xffab4132 0xffab4145 0xffab417f  .@..2A..EA...A..    │
+│ │           0x080483f8      c1e804         shr eax, 4                                                                      │ 0xffab290c  0xffab41ad 0xffab41e5 0xffab41f9 0xffab420e  .A...A...A...B..    │
+│ │           0x080483fb      c1e004         shl eax, 4                                                                      │ 0xffab291c  0xffab4221 0xffab423d 0xffab424c 0xffab4280  !B..=B..LB...B..    │
+│ │           0x080483fe      29c4           sub esp, eax                                                                    │                                                                              │
+│ │           0x08048400      c70424488504.  mov dword [esp], str.IOLI_Crackme_Level_0x02    ; [0x8048548:4]=0x494c4f49 ; "IO│                                                                              │
+│ │           0x08048407      e810ffffff     call sym.imp.printf         ;[1] ; int printf(const char *format)               │                                                                              ││ │           0x0804840c      c70424618504.  mov dword [esp], str.Password:    ; [0x8048561:4]=0x73736150 ; "Password: "     │                                                                              │
+│ │           0x08048413      e804ffffff     call sym.imp.printf         ;[1] ; int printf(const char *format)               │                                                                              │
+│ │           0x08048418      8d45fc         lea eax, [var_4h]                                                               │                                                                              │
+│ │           0x0804841b      89442404       mov dword [var_sp_4h], eax                                                      │                                                                              │
+│ │           0x0804841f      c704246c8504.  mov dword [esp], 0x804856c    ; [0x804856c:4]=0x50006425                        │                                                                              │
+│ │           0x08048426      e8e1feffff     call sym.imp.scanf          ;[2] ; int scanf(const char *format)                │                                                                              │
+│ │           0x0804842b      c745f85a0000.  mov dword [var_8h], 0x5a    ; 'Z' ; 90                                          │                                                                              │
+│ │           0x08048432      c745f4ec0100.  mov dword [var_ch], 0x1ec    ; 492                                              │──────────────────────────────────────────────────────────────────────────────┐
+│ │           0x08048439      8b55f4         mov edx, dword [var_ch]                                                         │[X]   Registers (dr)                                              [Cache] Off │
+│ │           0x0804843c      8d45f8         lea eax, [var_8h]                                                               │ eax = 0xf7ec4548                                                             │
+│ │           0x0804843f      0110           add dword [eax], edx                                                            │ ebx = 0x00000000                                                             │
+│ │           0x08048441      8b45f8         mov eax, dword [var_8h]                                                         │ ecx = 0x210780f9                                                             │
+│ │           0x08048444      0faf45f8       imul eax, dword [var_8h]                                                        │ edx = 0xffab2854                                                             │
+│ │           0x08048448      8945f4         mov dword [var_ch], eax                                                         │ esi = 0xf7ec2000                                                             │
+│ │           0x0804844b      8b45fc         mov eax, dword [var_4h]                                                         │ edi = 0xf7ec2000                                                             │
+│ │           0x0804844e      3b45f4         cmp eax, dword [var_ch]                                                         │ esp = 0xffab282c                                                             │
+│ │       ┌─< 0x08048451      750e           jne 0x8048461                                                                   │ ebp = 0x00000000                                                             │
+│ │       │   0x08048453      c704246f8504.  mov dword [esp], str.Password_OK_:    ; [0x804856f:4]=0x73736150 ; "Password OK │ eip = 0x080483e4                                                             │
+│ │       │   0x0804845a      e8bdfeffff     call sym.imp.printf         ;[1] ; int printf(const char *format)               │ eflags = 0x00000246                                                          │
+│ │      ┌──< 0x0804845f      eb0c           jmp 0x804846d                                                                   │ oeax = 0xffffffff                                                            │
+│ │      │└─> 0x08048461      c704247f8504.  mov dword [esp], str.Invalid_Password    ; [0x804857f:4]=0x61766e49 ; "Invalid P│                                                                              │
+│ │      │    0x08048468      e8affeffff     call sym.imp.printf         ;[1] ; int printf(const char *format)               │                                                                              │
+│ │      │    ; CODE XREF from main @ 0x804845f                                                                              │                                                                              │
+│ │      └──> 0x0804846d      b800000000     mov eax, 0                                                                      │                                                                              │
+│ │           0x08048472      c9             leave                                                                           │                                                                              │
+│ └           0x08048473      c3             ret                                                                             │                                                                              │
+│             0x08048474      90             nop                                                                             │                                                                              │
+│             0x08048475      90             nop                                                                             │                                                                              │
+│             0x08048476      90             nop                                                                             │                                                                              │
+│             0x08048477      90             nop                                                                             │                                                                              │
+│             0x08048478      90             nop                                                                             │                                                                              │
+│             0x08048479      90             nop                                                                             │                                                                              │
+│             0x0804847a      90             nop                                                                             │                                                                              │
+│             0x0804847b      90             nop                                                                             │                                                                              │
+```
+This is how it looks like in panel mode and the line to be executed will be highlighted. As you can see there are three windows, the disassembly window and other two , one is stack value at the top right and other one is registers (bottom-rigth). Press s to step to next instruction and the registers, stacks will change accordingly.
+
+Step till 0x0804844b and see the value of eax at the register window or use `pxd @ eax` to see the value from eax registers
+
+This is all for debugging , so next we will continue on Part-II
