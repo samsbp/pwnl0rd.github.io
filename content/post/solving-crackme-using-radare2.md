@@ -400,4 +400,4 @@ And the final value of the operation will be 338724 and we found the password!.
 
 I know it is not good to continue after this as you may feel brainfucked, it's okay . Start solving the crackme's and if you can't solve it, you can refer this blog.
 
-Will see you in the next blog post [Part-2].
+Will see you in the next [blog post](/post/debugging-in-r2/).
