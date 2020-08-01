@@ -5,6 +5,7 @@ Categories: [radare2,reverse,crackme]
 date: 2020-07-13T00:08:32+05:30
 ---
 
+![IMAGE](/img/main/IOLI-r2/main.jpg)
 As I was learning reverse engineering using r2, i tried the [IOLI crackmes](https://github.com/Maijin/radare2-workshop-2015/tree/master/IOLI-crackme/bin-linux). This post covers the solutions of two crackmes(0x00,0x01) using r2.
 
 ## crackme0x00

@@ -7,6 +7,10 @@ Categories: [radare2,reverse,crackme]
 DisableComments: false
 ---
  
+
+
+![IMAGE](/img/main/IOLI-r2/main1.jpg)
+
 Hi Y'ALL, before proceeding to solve other crackmes it is important to know how to debug in r2. This post is continuation of [Solving IOLI Crackmes Using Radare2 [Part-I]](/post/solving-crackme-using-radare2/).
 
 Let's take the previous solved crackme0x02 and solve it by debugging it.
