@@ -4,6 +4,7 @@ date: 2020-07-28T23:31:48+05:30
 Description: "Understanding Linux: Linux Processes"
 Tage: [linux,kernel,unix,process]
 Categories: [linux,kernel,unix,process]
+draft: True
 ---
 
 We will have an hands-on with linux process and how it works. Ofcourse, we may have studied Operating System but we didn't have interest because of enough practical knowledge. Understanding the concepts of  Operating System will help in developing robust & perfomance-oriented applications. It also helps in penetesting (cybersecurity).
