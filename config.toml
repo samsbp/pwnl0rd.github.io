@@ -1,4 +1,4 @@
-baseURL = "https://pwnl0rd.netlify.app"
+baseURL = "https://blog.pwnl0rd.me"
 languageCode = "en"
 DefaultContentLanguage = "en"
 title = "PwnL0rd's Blog"
@@ -67,8 +67,9 @@ url = "mailto:mail@samsbp18@gmail.com"
   url = "/post/"
 
   [[menu.main]]
-  name = "About"
+  name = "about"
   weight = 200
   identifier = "about"
   url = "/about/about"
+
 
