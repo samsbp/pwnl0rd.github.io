@@ -11,7 +11,7 @@ enableRobotsTXT = true
 #disqusShortname = ""
 
 # Google Analytics
-#googleAnalytics = "UA-172738986-1"
+googleAnalytics = "UA-172738986-1"
 
 [params]
 title = "Pwnl0rd's Blog"
