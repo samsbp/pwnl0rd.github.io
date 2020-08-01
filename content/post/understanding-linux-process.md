@@ -17,6 +17,7 @@ We will have an hands-on with linux process and how it works. Ofcourse, we may h
 
 The executable files should be in one of the format, respective to the operating system.
 
-## 
+## /proc/self
+
 
 

@@ -1,5 +1,5 @@
 ---
-title: "My Stuffs"
+title: "cat /proc/self"
 date: 2020-07-17T22:20:33+05:30
 ---
 
