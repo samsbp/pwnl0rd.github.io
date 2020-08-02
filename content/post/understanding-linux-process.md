@@ -9,20 +9,17 @@ Categories: [linux,kernel,unix,process]
 
 ![Main Image](/img/main/linux-process/main.png)
 
-  Hi Y'ALL, glad to meet you in this blog post. This post will cover the basic concepts on process mainly in linux system and we will have an hands-on with linux process and how it works. Ofcourse, we may have studied Operating System but we didn't have interest because of enough practical knowledge. Understanding the concepts of  Operating System will help in developing robust & perfomance-oriented applications. It also helps in penetesting (cybersecurity).
+  Hi Y'ALL, glad to meet you in this blog post. This post will cover the basic concepts on process mainly in linux system and we will have an hands-on with linux process and how it works. Understanding the concepts of  Operating System will help in developing robust & perfomance-oriented applications. It also helps in penetesting (cybersecurity).
 
 ## What is a process?
   I hate definition but no other go buddy :) . Process is a program in execution. Then you may have a question, what is a program?. In this context, a program is an executable file. In every operating system, there is a format for a file to be  executable.
-  Windows - [PE format](https://en.wikipedia.org/wiki/Portable_Executable)
-  Linux - [ELF format](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
-  Mac - [MACH-O](https://en.wikipedia.org/wiki/Mach-O)
+  - Windows - [PE format](https://en.wikipedia.org/wiki/Portable_Executable)
+  - Linux - [ELF format](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
+  - Mac - [MACH-O](https://en.wikipedia.org/wiki/Mach-O)
 
 The executable files should be in one of the format, respective to the operating system.
 
-## PCB
-
-Process Control Blocks aka PCB is a kernel data structure that maintains information on the processes that is of any state (state can be running,queued etc). Some of the data structures of the PCB are accessible through procfs. procfs is a pesudo file system which means it is not present in your hard disk. 
-
+## Parent & Child
 
 Process ID aka PID is used to identify the running process. For example , in a linux machine, `ps` is the command used to find all the running processes.
 ```
@@ -179,7 +176,7 @@ We can see the flow for bash process as systemd->gnome-terminal->bash->grep(the 
 And there comes the concept of forking.
 
 
-## child process
+### fork vs exec
 There are two significant syscalls(syscalls are the one that connects userspace program and the kernel), [fork](https://linux.die.net/man/2/fork) and [exec](https://man7.org/linux/man-pages/man3/exec.3.html) to create child process. The fork syscall will create a clone of the parent process and both, the parent and child, will have the same virtual address space whereas in exec the parent process will be replaced by the child process and parent process will get control only after child process finishes its execution. 
 
 example for fork call
@@ -271,3 +268,10 @@ pwn        82572  0.0  0.0  17664   732 pts/1    S+   09:56   0:00 grep --color=
 ```
 
 Now you can see that the previous `python execpython.py` has been replace by `tail` command but having the same PID. So , exec does not create new process but it overwrites the old process with the new one. 
+
+## PCB
+Process Control Blocks aka PCB is a kernel data structure that maintains information on the processes that is of any state (state can be running,queued etc). Some of the data structures of the PCB are accessible through procfs. procfs is a pesudo file system. Below explains the procfs.
+
+procfs can be found at /proc directory. To find the information about the process, we should find its PID from `ps` command.
+
+For more read the man pages [procfs](https://man7.org/linux/man-pages/man5/procfs.5.html)
