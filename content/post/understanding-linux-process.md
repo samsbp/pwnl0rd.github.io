@@ -2,7 +2,7 @@
 title: "Understanding-Linux: Process"
 date: 2020-07-28T23:31:48+05:30
 Description: "Understanding Linux: Linux Processes"
-Tage: [linux,kernel,unix,process]
+Tags: [linux,kernel,unix,process]
 Categories: [linux,kernel,unix,process]
 <!--draft: True-->
 ---
