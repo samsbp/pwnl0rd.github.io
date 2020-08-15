@@ -1,7 +1,7 @@
 ---
-title: "Bash Newline Magic"
+title: "Bizarre Bash"
 date: 2020-08-14T21:42:54+05:30
-Description: "Analysing bash weirdness with newline"
+Description: "Analysing bash newline weirdness"
 Tags: [bugbounty,penetration testing,bash,linux]
 Categories: [bugbounty,penetration testing,bash,linux]
 ---
