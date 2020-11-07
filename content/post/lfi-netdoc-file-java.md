@@ -69,7 +69,7 @@ If we give a file protocol with a domain name like file://domainname/etc/passwd 
 
 In the case of netdoc, if we give a netdoc protocol such as  ```netdoc://domainname/etc/passwd``` , java does not care about the domainname and it just fetch /etc/passwd from the local server itself. 
 
-Using the above default behaviour of ftp connections which can be invoked from a file protocol is quite interesting and can be used to get the java version which the server is running.
+Using the above default behaviour of ftp connections which can be invoked from a file protocol is quite interesting and can be used to get the java version which the server is running. This technique can be used to get java version in blind exploitation cases also.
 
 
 ![IMAGE](/img/java-url/leakjavaversion.png)
