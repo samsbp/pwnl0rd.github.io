@@ -29,9 +29,5 @@ HUGO_VERSION = "0.73.0"
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
 
-[[redirects]]
-  from = "https://pwnl0rd.netlify.app/*"
-  to = "https://blog.pwnl0rd.me"
-  status = 301
-  force = true
+
 
