@@ -1,4 +1,4 @@
-baseURL = "https://blog.pwnl0rd.me"
+baseURL = "https://pwnl0rd.netlify.app"
 languageCode = "en"
 DefaultContentLanguage = "en"
 title = "PwnL0rd's Blog"
